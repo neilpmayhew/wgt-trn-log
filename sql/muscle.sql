@@ -1,4 +1,3 @@
-
 INSERT muscle(muscle_name)
 VALUES
  ('Abs')
@@ -8,8 +7,9 @@ VALUES
 ,('Calves')
 ,('Chest')
 ,('Front Delts')
+,('Rear')
+,('Side Delt')
 ,('Glutes')
 ,('Hamstring')
 ,('Quad')
-,('Rear/Side Delt')
 ,('Traps')
