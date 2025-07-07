@@ -1,35 +1,27 @@
 CREATE TABLE muscle_group(
   muscle_group_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  muscle_group_name string
-);
-CREATE TABLE muscle(
-  muscle_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  muscle_name string
-  muscle_ muscle_group_id int FOREIGN KEY REFERENCES muscle_group(muscle_group_id)
+  muscle_group_name varchar(50)
 );
 CREATE TABLE user(
   user_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  user_first_name string,
-  user_last_name string
+  user_first_name varchar(100),
+  user_last_name varchar(100)
 );
 CREATE TABLE exercise(
   exercise_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  exercise_name string,
-  chest_set_proportion SINGLE,
-  back_set_proportion SINGLE,
-  bicep_set_proportion SINGLE,
-  tricep_set_proportion SINGLE,
-  side_delt_set_proportion SINGLE,
+  exercise_name varchar(100),
 );
 CREATE SCHEMA log;
 CREATE TABLE log.session(
   log_session_id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  log_session_date datetime,
+  log_session_start datetime,
+  log_session_end datetime,
   user_id FOREIGN KEY REFERENCES user(user_id)
 );
 CREATE TABLE log.set(
   log_set_id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  log_session_ordinal tinyint, -- when the set was completed within the session e.g. 1 =  1st etc.
+  log_set_start datetime,
+  log_set_end datetime,
   log_session_id int FOREIGN KEY REFERENCES log.session(log_session_id),
   exercise_id int FOREIGN KEY REFERENCES exercise(exercise_id),
   weight_in_kg int,
