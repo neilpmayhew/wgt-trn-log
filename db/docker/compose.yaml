@@ -1,0 +1,22 @@
+services:
+
+  db:
+    image: postgres
+    restart: always
+    # set shared memory limit when using docker compose
+    shm_size: 128mb
+    volumes:
+      - /home/neil/src/wgt-trn-log/db/sql:/sql
+      - /home/neil/src/wgt-trn-log/db/data:/data
+      - /home/neil/src/wgt-trn-log/db/postgres:/var/lib/postgresql
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+volumes:
+  sql:
+  data:
+
