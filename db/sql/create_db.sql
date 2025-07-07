@@ -4,7 +4,9 @@ CREATE TABLE IF NOT EXISTS muscle_group(
 );
 CREATE TABLE IF NOT EXISTS exercise(
   exercise_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  exercise_name varchar(100) NOT NULL
+  exercise_name varchar(100) NOT NULL,
+  exercise_type varchar(100) NOT NULL,
+  CONSTRAINT valid_exercise_type CHECK (exercise_type IN ('Barbell','Dumbell','Cable'))
 );
 CREATE SCHEMA IF NOT EXISTS log;
 CREATE TABLE IF NOT EXISTS log.session(
