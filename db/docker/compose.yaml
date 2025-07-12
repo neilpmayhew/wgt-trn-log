@@ -5,6 +5,8 @@ services:
     restart: always
     # set shared memory limit when using docker compose
     shm_size: 128mb
+    ports:
+    - "5432:5432"
     volumes:
       - /home/neil/src/wgt-trn-log/db/sql:/sql
       - /home/neil/src/wgt-trn-log/db/data:/data
@@ -16,6 +18,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: wgt_trn_log
 
 volumes:
   sql:
