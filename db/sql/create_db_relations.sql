@@ -4,15 +4,9 @@ CREATE TABLE IF NOT EXISTS muscle_group(
   CONSTRAINT muscle_group_name_unique UNIQUE(muscle_group_name)
 );
 
-CREATE TABLE IF NOT EXISTS equipment_type(
-  equipment_type_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  equipment_type_name varchar(100) NOT NULL
-);
 CREATE TABLE IF NOT EXISTS exercise(
   exercise_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  exercise_name varchar(100) NOT NULL,
-  equipment_type_id INT NOT NULL,
-  FOREIGN KEY (equipment_type_id) REFERENCES equipment_type(equipment_type_id)
+  exercise_name varchar(100) NOT NULL
 );
 CREATE SCHEMA IF NOT EXISTS log;
 CREATE TABLE IF NOT EXISTS log.session(
