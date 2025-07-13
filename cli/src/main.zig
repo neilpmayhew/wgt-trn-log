@@ -1,44 +1,5 @@
 const std = @import("std");
-
-const LoggedSet = struct {
-    timestamp: i64,
-    weight: u8,
-    reps: u8,
-    rir: u4,
-
-    pub fn format(
-        logged_set: LoggedSet,
-        comptime _: []const u8,
-        _: std.fmt.FormatOptions,
-        writer: anytype,
-    ) !void {
-        _ = try writer.print("{}x{} :rir {}\n", .{ logged_set.weight, logged_set.reps, logged_set.rir });
-    }
-};
-
-const LoggedExercise = struct {
-    exercise_name: []const u8,
-    logged_sets: []const LoggedSet,
-
-    pub fn format(
-        logged_exercise: LoggedExercise,
-        comptime _: []const u8,
-        _: std.fmt.FormatOptions,
-        writer: anytype,
-    ) !void {
-        _ = try writer.print("## {s}\n", .{logged_exercise.exercise_name});
-
-        for (logged_exercise.logged_sets) |logged_set| {
-            _ = try writer.print("{}\n", .{logged_set});
-        }
-    }
-};
-
-pub fn LogSet() !LoggedSet {
-    //
-
-}
-
+const data = @import("data");
 pub fn main() !void {
     // const logged_set = LoggedSet{
     //     .timestamp = std.time.milliTimestamp(),
@@ -47,12 +8,13 @@ pub fn main() !void {
     //     .rir = 2,
     // };
 
-    const logged_exercise = LoggedExercise{
+    const exercise = data.Exercise{
+        .exercise_id = 1,
         .exercise_name = "Squat",
-        .logged_sets = &.{.{ .timestamp = std.time.milliTimestamp(), .weight = 70, .reps = 5, .rir = 2 }},
+        .exercise_type = "Barbell",
     };
 
-    std.debug.print("{}", .{logged_exercise});
+    const 
 
     // const allocator = std.heap.page_allocator;
     // const result = try std.process.Child.run(.{

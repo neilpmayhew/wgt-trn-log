@@ -32,6 +32,17 @@ pub fn build(b: *std.Build) void {
         .root_module = exe_mod,
     });
 
+    const pg = b.dependency("pg", .{
+        .target = target,
+        .optimize = optimize,
+    });
+
+    // the executable from your call to b.addExecutable(...)
+    exe.root_module.addImport("pg", pg.module("pg"));
+
+    const data = b.createModule(.{ .root_source_file = b.path("src/data/data.zig") });
+    exe.root_module.addImport("data", data);
+
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default
     // step when running `zig build`).
