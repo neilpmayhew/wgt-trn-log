@@ -54,12 +54,11 @@ CREATE TABLE IF NOT EXISTS plan.session(
   FOREIGN KEY (plan_program_id) REFERENCES plan.program(plan_program_id),
   plan_session_name VARCHAR(100) NOT NULL,
   CONSTRAINT plan_session_unique_name UNIQUE(plan_session_name),
-  plan_program_ordinal smallint NOT NULL
-  CONSTRAINT plan_session_unique_ordinal UNIQUE(plan_program_id,plan_program_ordinal),
+  plan_program_ordinal smallint NOT NULL,
+  CONSTRAINT plan_session_unique_ordinal UNIQUE(plan_program_id,plan_program_ordinal)
 );
 CREATE TABLE IF NOT EXISTS plan.set_reps_in_reserve_goal(
   set_reps_in_reserve_goal_id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  FOREIGN KEY (plan_session_id) REFERENCES plan.session(plan_session_id),
   reps_min smallint NOT NULL,
   reps_max smallint NOT NULL,
   set_reps_in_reserve_goal smallint NOT NULL
